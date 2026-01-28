@@ -110,7 +110,7 @@ const ContactSection = () => {
               </div>
 
               <div className="text-[10px] text-muted-foreground my-2 font-mono">
-                By clicking "Submit Now", you agree to our{" "}
+                By clicking &quot;Submit Now&quot;, you agree to our{" "}
                 <Link href="/terms" className="text-primary hover:underline">
                   Terms of Use
                 </Link>{" "}
