@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiMail, FiMessageCircle, FiPhone, FiUser } from "react-icons/fi";
 import ReCAPTCHA from "react-google-recaptcha";
-import SupportSection from "./SupportSection";
 
 const ContactSection = () => {
   function onChange(value: any) {
@@ -16,136 +15,107 @@ const ContactSection = () => {
 
   return (
     <>
-      <div className="bg-[#6f56cc] text-white mx-auto px-0 md:px-16 py-20 lg:px-32 overflow-hidden flex flex-col items-center justify-center md:flex-row">
-        <div className="flex-1 p-4 w-3/4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Contact{" "}
-            <span className="inline-block rounded-lg bg-[#a6c03d] text-white ml-2 px-2">
+      <div className="relative min-h-screen bg-background text-foreground mx-auto px-4 md:px-16 py-20 lg:px-32 overflow-hidden flex flex-col items-center justify-center md:flex-row gap-12">
+        {/* Background glow effect */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
+        </div>
+
+        <div className="flex-1 w-full md:w-1/2 z-10">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-mono uppercase tracking-tight">
+            Contact
+            <span className="inline-block bg-accent/10 border border-accent text-accent ml-4 px-4 py-1 clip-path-slant text-3xl md:text-5xl align-middle">
               US
             </span>
           </h1>
-          <p className="mb-4 text-[16px] md:text-[22px] mt-4">
+          <p className="mb-8 text-lg text-muted-foreground leading-relaxed">
             At SpecCheck, we&apos;re always eager to provide guidance, answer
             any questions, or offer insights related to our platform! Please
-            don&apos;t hesitate to reach out, and our dedicated team will get
-            back to you as soon as possible.
+            don&apos;t hesitate to reach out.
           </p>
-          <hr className="h-1" />
-          <h1 className="font-bold text-xl mt-10">Headquarters</h1>
-          <div className="mb-4 mt-4">
-            2261 Market Street, #5183
-            <p>San Francisco, CA 94114</p>
-          </div>
-          <div>
-            <h3 className="mb-2 font-semibold">Social Links</h3>
-            <div className="flex mt-4 space-x-4">
-              <Link
-                href="https://linkedin.com/company/speccheck"
-                target="_blank"
-              >
-                <Image
-                  src="/Images/linkdein.svg"
-                  alt="LinkedIn"
-                  width={24}
-                  height={24}
-                />
-              </Link>
-              <Link href="https://twitter.com/SpecCheckRx" target="_blank">
-                <Image
-                  src="/Images/twitter.svg"
-                  alt="Twitter"
-                  width={24}
-                  height={24}
-                />
-              </Link>
-              <Link
-                href="https://www.ycombinator.com/companies/speccheck"
-                target="_blank"
-              >
-                <Image
-                  src="/Images/Y_Combinator.png"
-                  alt="Y_Combinator"
-                  width={24}
-                  height={24}
-                />
-              </Link>
-              <Link
-                href="https://www.ycombinator.com/companies/speccheck"
-                target="_blank"
-              >
-                <Image src="/Images/cb.png" alt="cb" width={24} height={24} />
-              </Link>
 
-              <Link href="https://www.youtube.com/@SpecCheckRx" target="_blank">
-                <Image
-                  src="/Images/yt.svg"
-                  alt="YouTube"
-                  width={24}
-                  height={24}
-                />
-              </Link>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-transparent mb-10" />
+
+          <div className="space-y-8">
+            <div>
+              <h1 className="font-bold text-xl mb-2 text-primary uppercase tracking-widest text-sm">Headquarters</h1>
+              <div className="text-foreground/80 font-mono">
+                <p>2261 Market Street, #5183</p>
+                <p>San Francisco, CA 94114</p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex-1 p-4 px-24">
-          <div className="w-full  mx-auto bg-white rounded-lg shadow-md p-6">
+
+        <div className="flex-1 w-full md:w-1/2 z-10">
+          <div className="w-full bg-card/30 backdrop-blur-sm border border-white/10 p-8 shadow-2xl relative">
+            {/* Decorative corner accents */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-primary" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-primary" />
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-primary" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-primary" />
+
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="flex items-center border px-4 py-3 border-black rounded-md">
-                <FiUser
-                  className="text-gray-400 mr-2"
-                  style={{ color: "black", fill: "black" }}
-                />
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  required
-                  className="flex-1  bg-transparent text-gray-700 placeholder-gray-400  focus:outline-none focus:border-blue-500"
-                />
+              <div className="group relative">
+                <div className="flex items-center border-b border-white/20 px-0 py-3 focus-within:border-primary transition-colors">
+                  <FiUser className="text-muted-foreground mr-3 group-focus-within:text-primary transition-colors" size={20} />
+                  <input
+                    type="text"
+                    placeholder="FULL NAME"
+                    required
+                    className="flex-1 bg-transparent text-foreground placeholder-muted-foreground/50 focus:outline-none font-mono text-sm"
+                  />
+                </div>
               </div>
-              <div className="flex items-center border px-4 py-3 border-black rounded-md">
-                <FiMail
-                  className="text-gray-400 mr-2"
-                  style={{ color: "white", fill: "black" }}
-                />
-                <input
-                  type="email"
-                  placeholder="Work Email"
-                  required
-                  className="flex-1 appearance-none bg-transparent text-gray-700 placeholder-gray-400 focus:outline-none"
-                />
+
+              <div className="group relative">
+                <div className="flex items-center border-b border-white/20 px-0 py-3 focus-within:border-primary transition-colors">
+                  <FiMail className="text-muted-foreground mr-3 group-focus-within:text-primary transition-colors" size={20} />
+                  <input
+                    type="email"
+                    placeholder="WORK EMAIL"
+                    required
+                    className="flex-1 bg-transparent text-foreground placeholder-muted-foreground/50 focus:outline-none font-mono text-sm"
+                  />
+                </div>
               </div>
-              <div className="flex items-center border px-4 py-3 border-black rounded-md">
-                <FiPhone
-                  className="text-gray-400 mr-2"
-                  style={{ color: "black", fill: "black" }}
-                />
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  required
-                  className="flex-1 appearance-none bg-transparent text-gray-700 placeholder-gray-400 focus:outline-none"
-                />
+
+              <div className="group relative">
+                <div className="flex items-center border-b border-white/20 px-0 py-3 focus-within:border-primary transition-colors">
+                  <FiPhone className="text-muted-foreground mr-3 group-focus-within:text-primary transition-colors" size={20} />
+                  <input
+                    type="text"
+                    placeholder="PHONE NUMBER"
+                    required
+                    className="flex-1 bg-transparent text-foreground placeholder-muted-foreground/50 focus:outline-none font-mono text-sm"
+                  />
+                </div>
               </div>
-              <div className="flex items-start border px-4 py-3 border-black rounded-md">
-                <FiMessageCircle
-                  className="text-gray-400 mt-1 mr-2"
-                  style={{ color: "black", fill: "black" }}
-                />
-                <textarea
-                  placeholder="Message"
-                  required
-                  className="flex-1 appearance-none bg-transparent text-gray-700 placeholder-gray-400 focus:outline-none"
-                  rows={5}
-                />
+
+              <div className="group relative">
+                <div className="flex items-start border-b border-white/20 px-0 py-3 focus-within:border-primary transition-colors">
+                  <FiMessageCircle className="text-muted-foreground mt-1 mr-3 group-focus-within:text-primary transition-colors" size={20} />
+                  <textarea
+                    placeholder="MESSAGE"
+                    required
+                    className="flex-1 bg-transparent text-foreground placeholder-muted-foreground/50 focus:outline-none font-mono text-sm resize-none"
+                    rows={4}
+                  />
+                </div>
               </div>
-              <ReCAPTCHA sitekey={sikeKey} onChange={onChange} />
-              <div className="text-[10px] text-gray-600 my-1">
-                By clicking “Submit Now”, you agree to our{" "}
-                <Link href="/terms" className="text-blue-500 underline">
+
+              <div className="py-2">
+                <ReCAPTCHA sitekey={sikeKey} onChange={onChange} theme="dark" />
+              </div>
+
+              <div className="text-[10px] text-muted-foreground my-2 font-mono">
+                By clicking "Submit Now", you agree to our{" "}
+                <Link href="/terms" className="text-primary hover:underline">
                   Terms of Use
                 </Link>{" "}
                 and{" "}
-                <Link href="/privacy" className="text-blue-500 underline">
+                <Link href="/privacy" className="text-primary hover:underline">
                   Privacy Policy
                 </Link>
                 .
@@ -153,7 +123,7 @@ const ContactSection = () => {
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#a6c03d] hover:bg-[#b2c761] text-white font-bold px-4 py-4"
+                className="w-full bg-primary/90 hover:bg-primary text-white font-bold tracking-widest uppercase py-4 clip-path-slant transition-all hover:translate-x-1 hover:-translate-y-1 shadow-lg hover:shadow-primary/50"
               >
                 Submit Now
               </button>
@@ -161,7 +131,6 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-      <SupportSection />
     </>
   );
 };
